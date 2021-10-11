@@ -1,0 +1,24 @@
+name: Push image to GitHub Repository
+
+on:
+  release:
+    types: 
+      - published
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  semantic_pr_job:
+    runs-on: ubuntu-latest
+    name: Composite Action check
+    steps:
+      - uses: actions/checkout@v2
+      - id: foo
+        uses: vc-vantage/docker-push-github-repo-composite-action@v1
+        with:
+          github-actor: ${{ github.actor }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          docker-registry: ${{ env.REGISTRY }}
+          docker-image: ${{ env.IMAGE_NAME }}
