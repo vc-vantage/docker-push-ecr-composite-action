@@ -41,6 +41,8 @@ runs:
       with:
         images: ${{ steps.image_names.outputs.images }}
         tags: |
+          type=raw,value=latest
+          type=raw,value={{branch}}
           type=ref,event=branch
           type=ref,event=pr
           type=semver,pattern={{version}}
