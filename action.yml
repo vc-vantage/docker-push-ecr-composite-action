@@ -41,13 +41,13 @@ runs:
       with:
         images: ${{ steps.image_names.outputs.images }}
         tags: |
-          type=raw,value=latest
-          type=edge,branch=$repo.default_branch
           type=ref,event=branch
           type=ref,event=pr
           type=semver,pattern={{version}}
           type=semver,pattern={{major}}.{{minor}}
           type=sha
+          type=edge,enable=true,priority=700,prefix=,suffix=,branch=$repo.default_branch
+          type=raw,value=latest
 
     - name: Build & Push image
       uses: docker/build-push-action@v2
