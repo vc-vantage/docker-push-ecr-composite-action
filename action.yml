@@ -46,7 +46,7 @@ runs:
           type=semver,pattern={{version}}
           type=semver,pattern={{major}}.{{minor}}
           type=sha
-          type=edge,enable=true,priority=700,prefix=,suffix=,branch=$repo.default_branch
+          type=raw,value=master
           type=raw,value=latest
 
     - name: Build & Push image
